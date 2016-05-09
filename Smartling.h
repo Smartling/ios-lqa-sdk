@@ -21,5 +21,6 @@ typedef NS_ENUM(NSUInteger, SLLoggingLevel){
 
 + (void)startWithProjectId:(NSString *)projectId andOptions:(NSDictionary *)options;
 + (NSLocale *)locale;
++ (NSString *)pluralizedStringWithKey:(NSString *)key value:(NSNumber *)value NS_FORMAT_ARGUMENT(1);
 
 @end
