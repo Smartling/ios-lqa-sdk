@@ -25,3 +25,11 @@ end
 
 @end
 ```
+
+# Plurals
+
+To localize strings with plural rules, use the `pluralizedStringWithKey:value:` method instead of `NSLocalizedString` as follows:
+```objc
+NSNumber *value = @(5);
+label.text = [NSString stringWithFormat:[Smartling pluralizedStringWithKey:@"<key>" value:value], value];
+```
