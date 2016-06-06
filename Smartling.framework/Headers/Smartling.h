@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, SLLoggingLevel){
 };
 
 
-@interface SmartlingSDK : NSObject
+@interface Smartling : NSObject
 
 + (void)startWithProjectId:(NSString *)projectId andOptions:(NSDictionary *)options;
 + (NSLocale *)locale;
