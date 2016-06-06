@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.requires_arc      = true
                       
   s.preserve_paths    = ['SmartlingSDK.framework']
-  s.libraries         = [icucore"]
+  s.libraries         = ["icucore"]
   s.frameworks        = "UIKit", "Foundation", "SystemConfiguration", "SmartlingSDK"
   s.xcconfig          = { "FRAMEWORK_SEARCH_PATHS" => "\"$(PODS_ROOT)/Smartling\"" }
 end
