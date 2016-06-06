@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name              = "Smartling"
-  s.version           = "1.1.4"
+  s.version           = "1.1.5"
   s.summary           = "Smartling in-context translation editor "
   s.description       = <<-DESC
                         Smartling offers an advanced interface for translating and performing QA on a mobile app, in-context, directly within the app and on the actual device.
@@ -16,9 +16,8 @@ Pod::Spec.new do |s|
   s.platform          = :ios, '8.0'
   s.requires_arc      = true
                       
-  s.source_files      = '*.h'
   s.preserve_paths    = ['SmartlingSDK.framework']
-  s.libraries         = ["SmartlingSDK", "icucore"]
-  s.frameworks        = "UIKit", "Foundation", "SystemConfiguration"
-  s.xcconfig          = { "LIBRARY_SEARCH_PATHS" => "\"$(PODS_ROOT)/Smartling\"" }
+  s.libraries         = [icucore"]
+  s.frameworks        = "UIKit", "Foundation", "SystemConfiguration", "SmartlingSDK"
+  s.xcconfig          = { "FRAMEWORK_SEARCH_PATHS" => "\"$(PODS_ROOT)/Smartling\"" }
 end
