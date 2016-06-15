@@ -1,6 +1,0 @@
-framework module Smartling {
-  umbrella header "Smartling.h"
-
-  export *
-  module * { export * }
-}
