@@ -7,11 +7,35 @@ Go to your project settings by selecting the project file in the Xcode file expl
 We recommend you add all of the languages you want your app translated into in the Languages list. However, you will not need to enable localization for every Interface Builder file (Storyboards, XIBs). Strings will be extracted from those and localized at runtime by the Smartling SDK.
 
 
-In your code, all of your user facing strings need to be externalized using the macro `NSLocalizedString`. This is the standard way of localizing apps on iOS, and Smartling simply overrides its behavior. You can then use Apple's `genstrings` command line tool to extract all strings from your code into a Localizable.strings file.
+In your code, all of your user facing strings need to be externalized using the macro `NSLocalizedString`. This is the standard way of localizing apps on iOS, and Smartling simply overrides its behavior.
+
+# Import your strings into Smartling
+
+## Manually
+
+You can upload your project's `.strings` files manually into the Smartling dashboard to make your strings available for your translators. You can then use Apple's `genstrings` command line tool to extract all strings from your code into a Localizable.strings file. For localized strings included in Interface Builder files, you can use the `ibtool` command line tool to do so.
+
+## Automatically
+
+Smartling provides a Ruby gem to extract your strings and upload them to the dashboard automatically. Install it using Rubygems with the following command:
+```
+gem install smartling_xcode
+```
+Then run
+```
+smartling_xcode init
+```
+You will be prompted to enter your project ID and API key, which you can find on the Smartling dashboard.
+
+In your Xcode project folder, you can now run
+```
+smartling_xcode push
+```
+Your app's strings are now available on the dashboard.
 
 # Installation instructions
 
-- In your project's `podfile`, add the Smartling pod as shown below. Use `Smartling-framework` if you're using Swift or if you're using CocoaPods' `use_frameworks!` option, or simply `Smartling` otherwise. 
+In your project's `podfile`, add the Smartling pod as shown below. Use `Smartling-framework` if you're using Swift or if you're using CocoaPods' `use_frameworks!` option, or simply `Smartling` otherwise. 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -21,7 +45,7 @@ end
 
 ``` 
 
-- In your app's AppDelegate, import the library and call the start method as shown below:
+In your app's AppDelegate, import the library and call the start method as shown below:
 ```objc
 #import "AppDelegate.h"
 #import <Smartling/Smartling.h>
@@ -29,7 +53,7 @@ end
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Smartling startWithProjectId:@"<ProjectID>" andOptions:@{SLLogging : @(SLLoggingDebug), SLMode: @(SLEdition)}];
+    [Smartling startWithProjectId:@"<ProjectID>" key:@"<Project AES key>" andOptions:@{SLLogging : @(SLLoggingDebug), SLMode: @(SLInAppReview)}];
     return YES;
 }
 
@@ -46,8 +70,8 @@ Defines the level of logging the SDK outputs to the console.
 
 ### SLMode
 * SLDisabled (default) - The SDK doesn't affect the app whatsoever
-* SLOTAUpdates - Published strings are served to the user in his language and displayed in the app
-* SLEdition - Members of your team can log in to edit strings and review them in context inside the app
+* SLOTAServing - Published strings are served to the user in his language and displayed in the app
+* SLInAppReview - Members of your team can log in to edit strings and review them in context inside the app
 
 # Plurals
 
