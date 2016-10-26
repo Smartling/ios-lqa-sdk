@@ -18,17 +18,17 @@ You can upload your project's `.strings` files manually into the Smartling dashb
 ## Automatically
 
 Smartling provides a Ruby gem to extract your strings and upload them to the dashboard automatically. Install it using Rubygems with the following command:
-```
+```bash
 gem install smartling_xcode
 ```
 Then run
-```
+```bash
 smartling_xcode init
 ```
 You will be prompted to enter your project ID and API key, which you can find on the Smartling dashboard.
 
 In your Xcode project folder, you can now run
-```
+```bash
 smartling_xcode push
 ```
 Your app's strings are now available on the dashboard.
@@ -36,7 +36,7 @@ Your app's strings are now available on the dashboard.
 # Installation instructions
 
 In your project's `podfile`, add the Smartling pod as shown below. Use `Smartling-framework` if you're using Swift or if you're using CocoaPods' `use_frameworks!` option, or simply `Smartling` otherwise. 
-```
+```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'MyApp' do
@@ -45,20 +45,20 @@ end
 
 ``` 
 
-In your app's AppDelegate, import the library and call the start method as shown below:
+In your app's main.m, import the library and call the start method as shown below:
 ```objc
+#import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import <Smartling/Smartling.h>
+#import "SmartlingImport.h"
 
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Smartling startWithProjectId:@"<ProjectID>" key:@"<Project AES key>" andOptions:@{SLLogging : @(SLLoggingDebug), SLMode: @(SLInAppReview)}];
-    return YES;
+int main(int argc, char * argv[]) {
+    @autoreleasepool {
+        [Smartling startWithProjectId:@"<Project ID>" key:@"<Project AES Key>" andOptions:@{SLLogging : @(SLLoggingDebug), SLMode: @(SLInAppReview)}];
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
 }
-
-@end
 ```
+For Swift apps you can call this method in your AppDelegate's `application:didFinishLaunchingWithOptions:` method instead.
 
 # Options
 
