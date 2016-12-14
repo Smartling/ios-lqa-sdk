@@ -10,11 +10,15 @@
 
 #define SLLogging               @"logging"
 #define SLMode                  @"mode"
+#define SLOTAKey                @"otaKey"
+#define SLAPIUserId             @"apiUserId"
+#define SLAPIUserSecret         @"apiUserSecret"
 
 typedef NS_ENUM(NSInteger, SLModeOptions) {
     SLDisabled,
     SLOTAServing,
-    SLInAppReview
+    SLInAppReview,
+    SLContextCapture
 };
 
 typedef NS_ENUM(NSUInteger, SLLoggingLevel){
@@ -25,7 +29,7 @@ typedef NS_ENUM(NSUInteger, SLLoggingLevel){
 
 @interface Smartling : NSObject
 
-+ (void)startWithProjectId:(NSString *)projectId key:(NSString *)key andOptions:(NSDictionary *)options;
++ (void)startWithProjectId:(NSString *)projectId andOptions:(NSDictionary *)options;
 + (NSLocale *)locale;
 + (NSString *)pluralizedStringWithKey:(NSString *)key value:(NSNumber *)value NS_FORMAT_ARGUMENT(1);
 
