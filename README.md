@@ -53,7 +53,7 @@ In your app's main.m, import the library and call the start method as shown belo
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        [Smartling startWithProjectId:@"<Project ID>" key:@"<Project AES Key>" andOptions:@{SLLogging : @(SLLoggingDebug), SLMode: @(SLInAppReview)}];
+        [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : @(SLLoggingDebug), SLMode: @(SLInAppReview)}];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
@@ -72,6 +72,9 @@ Defines the level of logging the SDK outputs to the console.
 * SLDisabled (default) - The SDK doesn't affect the app whatsoever
 * SLOTAServing - Published strings are served to the user in his language and displayed in the app
 * SLInAppReview - Members of your team can log in to edit strings and review them in context inside the app
+
+### SLOTAKey
+Your project's AES key for OTA updates (required for OTA Serving mode)
 
 # Plurals
 
