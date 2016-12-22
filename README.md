@@ -49,7 +49,7 @@ In your app's main.m, import the library and call the start method as shown belo
 ```objc
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "SmartlingImport.h"
+#import "Smartling.h"
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
