@@ -76,6 +76,24 @@ Defines the level of logging the SDK outputs to the console.
 ### SLOTAKey
 Your project's AES key for OTA updates (required for OTA Serving mode)
 
+### SLAPIUserId, SLAPIUserSecret
+Smartling API v2 user ID and secret. Required options for OTA Serving mode if the `getProjectLocalesWithCompletion:` method is used.
+
+### SLForceLocale
+Set this option to a locale ID in OTA Serving mode to ignore automatic locale detection and force an arbitrary locale.
+
+### SLAllowLocaleChange
+Set this option to `@YES` in OTA Serving mode if your app allows the user to change the locale from within the app. Failing to set this option and calling the `setLocaleWithId:andCompletion:` method will result in inconsistent UI language.
+
+# Locale change at runtime
+
+If you want your users to be able to change their locale from within the app, Smartling helps you achieve this goal very easily.
+
+- First, you will need to set the `SLAllowLocaleChange` option to `@YES`. Optionally, you can use the `SLForceLocale` to force a locale on startup, if you're saving the user's choice for example. If you don't set this option, the device locale will be used.
+- To show the user a list of available locales, Smartling lets you request the list of locales available to your app project. Call the method `[Smartling getProjectLocalesWithCompletion:^(NSArray *locales, NSError *error){...}]`, and the completion block will give you an array of locales including the locale name and locale ID. 
+- When the user has selected a locale, you can set it using the method `[Smartling setLocaleWithId:<NSString *localeId> andCompletion:^(BOOL success){...}]`. The completion block will be called once the UI is entirely updated with texts from the selected locale. 
+
+
 # Plurals
 
 To localize strings with plural rules, use the `pluralizedStringWithKey:value:` method instead of `NSLocalizedString` as follows:
