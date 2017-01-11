@@ -72,12 +72,13 @@ Defines the level of logging the SDK outputs to the console.
 * SLDisabled (default) - The SDK doesn't affect the app whatsoever
 * SLOTAServing - Published strings are served to the user in his language and displayed in the app
 * SLInAppReview - Members of your team can log in to edit strings and review them in context inside the app
+* SLContextCapture - Lets the user create screenshots interactively when running the app 
 
 ### SLOTAKey
 Your project's AES key for OTA updates (required for OTA Serving mode)
 
 ### SLAPIUserId, SLAPIUserSecret
-Smartling API v2 user ID and secret. Required options for OTA Serving mode if the `getProjectLocalesWithCompletion:` method is used.
+Smartling API v2 user ID and secret. Required options for Context Capture mode, and for OTA Serving mode if the `getProjectLocalesWithCompletion:` method is used.
 
 ### SLForceLocale
 Set this option to a locale ID in OTA Serving mode to ignore automatic locale detection and force an arbitrary locale.
