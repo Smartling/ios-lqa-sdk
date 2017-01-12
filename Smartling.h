@@ -64,7 +64,7 @@ typedef NS_ENUM(NSUInteger, SLLoggingLevel){
 + (void)getProjectLocalesWithCompletion:(void (^)(NSArray *locales, NSError *error))completion;
 
 /**
- * Retunrs a localized version of a string with plurals support.
+ * Returns a localized version of a string with plurals support.
  */
 + (NSString *)pluralizedStringWithKey:(NSString *)key value:(NSNumber *)value NS_FORMAT_ARGUMENT(1);
 
