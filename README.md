@@ -13,7 +13,7 @@ In your code, all of your user facing strings need to be externalized using the 
 
 ## Manually
 
-You can upload your project's `.strings` files manually into the Smartling dashboard to make your strings available for your translators. You can then use Apple's `genstrings` command line tool to extract all strings from your code into a Localizable.strings file. For localized strings included in Interface Builder files, you can use the `ibtool` command line tool to do so.
+You can upload your project's `.strings` files manually into the Smartling dashboard to make your strings available for your translators. You may use Apple's `genstrings` command line tool to extract all strings from your code into a Localizable.strings file. For localized strings included in Interface Builder files, you can use the `ibtool` command line tool to do so.
 
 ## Automatically
 
@@ -49,18 +49,66 @@ In your app's main.m, import the library and call the start method as shown belo
 ```objc
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "Smartling.h"
+#import <Smartling/Smartling.h>
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : @(SLLoggingDebug), SLMode: @(SLInAppReview)}];
+        [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : @(SLLoggingInfo), SLMode: @(<Mode>)}];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
 ```
 For Swift apps you can call this method in your AppDelegate's `application:didFinishLaunchingWithOptions:` method instead.
 
-# Options
+# Modes
+
+## OTA serving
+
+In OTA serving mode, published strings are served to end users in their language and displayed in the app. 
+
+
+To build the app in OTA serving mode:
+* Use `SLMode: @(SLOTAServing)`
+* Add the `SLOTAKey` option, with your project's AES key for OTA updates.
+
+## In App Review
+
+The in-app review mode lets members of your team log in to edit strings and review them in context inside the app. 
+
+
+To build the app in in-app review mode, use `SLMode: @(SLInAppReview)` in the Smartling start method.
+
+## Context Capture
+
+With the context capture mode, the user can create screenshots interactively when running the app 
+
+
+To build the app in context capture mode:
+* Use `SLMode: @(SLContextCapture)` in the Smartling start method.
+* Generate an API v2 token from the Smartling dashboard. Pass the user ID and secret using the options `SLAPIUserId` and `SLAPIUserSecret`.
+
+
+### Automated Context Capture
+
+You can automate your context capture using Xcode UI tests. 
+
+Your app will need to be launched in context capture mode with the Smartling start option `SLUITests: @YES`. Add the following method to your app's UI tests and call it everywhere you need to trigger a screen capture:
+
+```objc
++ (void)triggerContextCapture {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElement *window = [app.windows elementBoundByIndex:0];
+    XCUICoordinate *origin = [window coordinateWithNormalizedOffset:CGVectorMake(0.0, 0.0)];
+    XCUICoordinate *triggerCoord = [origin coordinateWithOffset:CGVectorMake(100, 100)];
+    [triggerCoord pressForDuration:5.0];
+}
+```
+
+## Disabled
+
+You can leave the Smartling library in your project but disable its function entirely by omitting the start method, or calling it with the `SLMode: @(SLDisabled)` option.
+
+# Additional Options
 
 ### SLLogging
 Defines the level of logging the SDK outputs to the console. 
@@ -68,29 +116,13 @@ Defines the level of logging the SDK outputs to the console.
 * SLLoggingInfo
 * SLLoggingDebug
 
-### SLMode
-* SLDisabled (default) - The SDK doesn't affect the app whatsoever
-* SLOTAServing - Published strings are served to the user in his language and displayed in the app
-* SLInAppReview - Members of your team can log in to edit strings and review them in context inside the app
-* SLContextCapture - Lets the user create screenshots interactively when running the app 
-
-### SLOTAKey
-Your project's AES key for OTA updates (required for OTA Serving mode)
-
-### SLAPIUserId, SLAPIUserSecret
-Smartling API v2 user ID and secret. Required options for Context Capture mode, and for OTA Serving mode if the `getProjectLocalesWithCompletion:` method is used.
-
-### SLForceLocale
-Set this option to a locale ID in OTA Serving mode to ignore automatic locale detection and force an arbitrary locale.
-
-### SLAllowLocaleChange
-Set this option to `@YES` in OTA Serving mode if your app allows the user to change the locale from within the app. Failing to set this option and calling the `setLocaleWithId:andCompletion:` method will result in inconsistent UI language.
 
 # Locale change at runtime
 
-If you want your users to be able to change their locale from within the app, Smartling helps you achieve this goal very easily.
+In OTA serving mode, if you want your users to be able to change their locale from within the app, Smartling helps you achieve this goal very easily.
 
-- First, you will need to set the `SLAllowLocaleChange` option to `@YES`. Optionally, you can use the `SLForceLocale` to force a locale on startup, if you're saving the user's choice for example. If you don't set this option, the device locale will be used.
+- Generate an API v2 token from the Smartling dashboard. Pass the user ID and secret using the Smartling start options `SLAPIUserId` and `SLAPIUserSecret`.
+- Set the `SLAllowLocaleChange` option to `@YES`. Optionally, you can use the `SLForceLocale` to force a locale on startup, if you're saving the user's choice for example. If you don't set this option, the device locale will be used.
 - To show the user a list of available locales, Smartling lets you request the list of locales available to your app project. Call the method `[Smartling getProjectLocalesWithCompletion:^(NSArray *locales, NSError *error){...}]`, and the completion block will give you an array of locales including the locale name and locale ID. 
 - When the user has selected a locale, you can set it using the method `[Smartling setLocaleWithId:<NSString *localeId> andCompletion:^(BOOL success){...}]`. The completion block will be called once the UI is entirely updated with texts from the selected locale. 
 
@@ -102,3 +134,5 @@ To localize strings with plural rules, use the `pluralizedStringWithKey:value:` 
 NSNumber *value = @(5);
 label.text = [NSString stringWithFormat:[Smartling pluralizedStringWithKey:@"<key>" value:value], value];
 ```
+
+
