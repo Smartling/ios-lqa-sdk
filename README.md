@@ -35,7 +35,9 @@ Your app's strings are now available on the dashboard.
 
 # Installation instructions
 
-In your project's `podfile`, add the Smartling pod as shown below. Use `Smartling-framework` if you're using Swift or if you're using CocoaPods' `use_frameworks!` option, or simply `Smartling` otherwise. 
+## Objective-C
+
+In your project's `podfile`, add the Smartling pod as shown below. 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -44,6 +46,7 @@ target 'MyApp' do
 end
 
 ``` 
+**Note: Use `Smartling-framework` if you're using CocoaPods' `use_frameworks!` option.**
 
 In your app's main.m, import the library and call the start method as shown below:
 ```objc
@@ -53,12 +56,41 @@ In your app's main.m, import the library and call the start method as shown belo
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : @(SLLoggingInfo), SLMode: @(<Mode>)}];
+        [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : SLLoggingInfo, SLMode: <Mode>}];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
 ```
-For Swift apps you can call this method in your AppDelegate's `application:didFinishLaunchingWithOptions:` method instead.
+
+## Swift
+
+In your project's `podfile`, add the Smartling pod as shown below.
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'MyApp' do
+    use_frameworks!
+    pod 'Smartling-framework'
+end
+
+``` 
+
+In your app's AppDelegate.swift, import the library and call the start method as shown below:
+```swift
+import UIKit
+import Smartling
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    ...
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Smartling.start(withProjectId: "<Project ID>", andOptions: [SLLogging: SLLoggingInfo, SLMode: <Mode>])
+        return true
+    }
+
+```
 
 # Modes
 
@@ -68,7 +100,7 @@ In OTA serving mode, published strings are served to end users in their language
 
 
 To build the app in OTA serving mode:
-* Use `SLMode: @(SLOTAServing)`
+* Use `SLMode: SLOTAServing`
 * Add the `SLOTAKey` option, with your project's AES key for OTA updates.
 
 ## In App Review
@@ -76,7 +108,7 @@ To build the app in OTA serving mode:
 The in-app review mode lets members of your team log in to edit strings and review them in context inside the app. 
 
 
-To build the app in in-app review mode, use `SLMode: @(SLInAppReview)` in the Smartling start method.
+To build the app in in-app review mode, use `SLMode: SLInAppReview` in the Smartling start method.
 
 ## Context Capture
 
@@ -84,7 +116,7 @@ With the context capture mode, the user can create screenshots interactively whe
 
 
 To build the app in context capture mode:
-* Use `SLMode: @(SLContextCapture)` in the Smartling start method.
+* Use `SLMode: SLContextCapture` in the Smartling start method.
 * Generate an API v2 token from the Smartling dashboard. Pass the user ID and secret using the options `SLAPIUserId` and `SLAPIUserSecret`.
 
 
@@ -106,7 +138,7 @@ Your app will need to be launched in context capture mode with the Smartling sta
 
 ## Disabled
 
-You can leave the Smartling library in your project but disable its function entirely by omitting the start method, or calling it with the `SLMode: @(SLDisabled)` option.
+You can leave the Smartling library in your project but disable its function entirely by omitting the start method, or calling it with the `SLMode: SLDisabled` option.
 
 # Additional Options
 

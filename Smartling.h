@@ -18,25 +18,23 @@
 #define SLAPIUserSecret         @"apiUserSecret"        // Smartling API v2 user secret. Required option for Context Capture mode and for OTA if the getProjectLocalesWithCompletion: method is used.
 #define SLForceLocale           @"forceLocale"          // Set this option to a locale ID in OTA mode to ignore automatic locale detection and force an arbitrary locale.
 #define SLAllowLocaleChange     @"allowLocaleChange"    // Set this option to YES in OTA mode if your app allows the user to change the locale from within the app.
+#define SLUITests               @"UITests"              // Set this options to YES if you're automating Context Capture using Xcode UI automation. The gesture for taking a screenshot will be a one finger long press.
 
 /**
  * Options for the SDK mode startup option.
  */
-typedef NS_ENUM(NSInteger, SLModeOptions) {
-    SLDisabled,         // SDK entirely disabled.
-    SLOTAServing,       // Mobile Delivery Network enabled, strings are downloaded in the user's phone language and displayed in the UI.
-    SLInAppReview,      // In-App Review enabled, users can log in, translate strings and review them.
-    SLContextCapture    // Context Capture enabled, users can take screenshots of the app that will be sent to the dashboard with associated strings.
-};
+#define SLDisabled              @"SLDisabled"           // SDK entirely disabled.
+#define SLOTAServing            @"SLOTAServing"         // Mobile Delivery Network enabled, strings are downloaded in the user's phone language and displayed in the UI.
+#define SLInAppReview           @"SLInAppReview"        // In-App Review enabled, users can log in, translate strings and review them.
+#define SLContextCapture        @"SLContextCapture"     // Context Capture enabled, users can take screenshots of the app that will be sent to the dashboard with associated strings.
 
 /**
  * Options for the logging startup option.
  */
-typedef NS_ENUM(NSUInteger, SLLoggingLevel){
-    SLLoggingNone,      // Logging disabled.
-    SLLoggingInfo,      // Major errors and important information only.
-    SLLoggingDebug      // Verbose logging.
-};
+#define SLLoggingNone           @"SLLoggingNone"        // Logging disabled.
+#define SLLoggingInfo           @"SLLoggingInfo"        // Major errors and important information only.
+#define SLLoggingDebug          @"SLLoggingDebug"       // Verbose logging.
+
 
 @interface Smartling : NSObject
 
@@ -67,5 +65,6 @@ typedef NS_ENUM(NSUInteger, SLLoggingLevel){
  * Returns a localized version of a string with plurals support.
  */
 + (NSString *)pluralizedStringWithKey:(NSString *)key value:(NSNumber *)value NS_FORMAT_ARGUMENT(1);
+
 
 @end
