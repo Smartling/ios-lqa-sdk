@@ -50,6 +50,11 @@
 + (NSLocale *)locale;
 
 /**
+ * Get the app's base locale.
+ */
++ (NSLocale *)baseLocale;
+
+/**
  * Change the locale used by the Smartling SDK to supported locale ID. 
  * For your app to support locale switching, enabled the option `SLAllowLocaleChange`.
  * For a list of locales supported by your project, call `getProjectLocalesWithCompletion:`.
@@ -66,5 +71,14 @@
  */
 + (NSString *)pluralizedStringWithKey:(NSString *)key value:(NSNumber *)value NS_FORMAT_ARGUMENT(1);
 
+/**
+ * Returns a dictionary of all of the app's base locale strings.
+ */
++ (NSDictionary *)baseLocaleStrings;
+
+/**
+ * Returns a dictionary of all of the app's localized strings in the current locale.
+ */
++ (NSDictionary *)localizedStrings;
 
 @end
