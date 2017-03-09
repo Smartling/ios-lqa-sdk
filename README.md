@@ -94,9 +94,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 # Modes
 
-## OTA serving
+## Mobile Delivery Network (OTA serving)
 
-In OTA serving mode, published strings are served to end users in their language and displayed in the app. 
+Read more about the [Mobile Delivery Network](http://help.smartling.com/knowledge-base/articles/mobile-delivery-network/)
+
+In OTA serving mode, translated strings can be updated after the user has installed the app.
 
 
 To build the app in OTA serving mode:
