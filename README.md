@@ -42,7 +42,7 @@ In your project's `podfile`, add the Smartling pod as shown below.
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'MyApp' do
-    pod 'Smartling'
+	pod 'Smartling'
 end
 
 ``` 
@@ -166,4 +166,5 @@ To localize strings with plural rules, use the `pluralizedStringWithKey:value:` 
 NSNumber *value = @(5);
 label.text = [NSString stringWithFormat:[Smartling pluralizedStringWithKey:@"<key>" value:value], value];
 ```
+
 

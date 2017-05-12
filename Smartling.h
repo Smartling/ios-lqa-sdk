@@ -23,10 +23,11 @@
 /**
  * Options for the SDK mode startup option.
  */
-#define SLDisabled              @"SLDisabled"           // SDK entirely disabled.
-#define SLOTAServing            @"SLOTAServing"         // Mobile Delivery Network enabled, strings are downloaded in the user's phone language and displayed in the UI.
-#define SLInAppReview           @"SLInAppReview"        // In-App Review enabled, users can log in, translate strings and review them.
-#define SLContextCapture        @"SLContextCapture"     // Context Capture enabled, users can take screenshots of the app that will be sent to the dashboard with associated strings.
+#define SLDisabled                          @"SLDisabled"           // SDK entirely disabled.
+#define SLOTAServing                        @"SLOTAServing"         // Mobile Delivery Network enabled, strings are downloaded in the user's phone language and displayed in the UI.
+#define SLInAppReview                       @"SLInAppReview"        // In-App Review enabled, users can log in, translate strings and review them.
+#define SLContextCapture                    @"SLContextCapture"     // Context Capture enabled, users can take screenshots of the app that will be sent to the dashboard with associated strings.
+#define SLInAppReviewAndContextCapture      @"SLInAppReviewAndContextCapture"     // Combines both modes
 
 /**
  * Options for the logging startup option.
