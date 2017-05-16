@@ -18,7 +18,6 @@
 #define SLAPIUserSecret         @"apiUserSecret"        // Smartling API v2 user secret. Required option for Context Capture mode and for OTA if the getProjectLocalesWithCompletion: method is used.
 #define SLForceLocale           @"forceLocale"          // Set this option to a locale ID in OTA mode to ignore automatic locale detection and force an arbitrary locale.
 #define SLAllowLocaleChange     @"allowLocaleChange"    // Set this option to YES in OTA mode if your app allows the user to change the locale from within the app.
-#define SLUITests               @"UITests"              // Set this options to YES if you're automating Context Capture using Xcode UI automation. The gesture for taking a screenshot will be a one finger long press.
 
 /**
  * Options for the SDK mode startup option.

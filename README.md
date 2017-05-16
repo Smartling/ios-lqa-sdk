@@ -119,12 +119,11 @@ To build the app in context capture mode:
 * Use `SLMode: SLContextCapture` in the Smartling start method.
 * Generate an API v2 token from the Smartling dashboard. Pass the user ID and secret using the options `SLAPIUserId` and `SLAPIUserSecret`.
 
-
 ### Automated Context Capture
 
 You can automate your context capture using Xcode UI tests. 
 
-Your app will need to be launched in context capture mode with the Smartling start option `SLUITests: @YES`. Add the following method to your app's UI tests and call it everywhere you need to trigger a screen capture:
+Your app will need to be launched in context capture mode. Add the following method to your app's UI tests and call it everywhere you need to trigger a screen capture:
 
 ```objc
 + (void)triggerContextCapture {
@@ -135,6 +134,12 @@ Your app will need to be launched in context capture mode with the Smartling sta
     [triggerCoord pressForDuration:5.0];
 }
 ```
+
+## In App Review and Context Capture
+
+This mode is identical to the in-app review mode, but an additional option in the actions menu is added to let the users switch to context capture mode from within the app. That way, they can access both modes with one single build of your app.
+
+To build the app in this combined mode, use `SLMode: SLInAppReviewAndContextCapture` in the Smartling start method, and include the API v2 tokens as described in the "Automated Context Capture" section above.
 
 ## Disabled
 
