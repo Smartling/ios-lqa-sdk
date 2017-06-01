@@ -35,9 +35,19 @@ Your app's strings are now available on the dashboard.
 
 # Installation instructions
 
-## Objective-C
+Pick the SDK that suits your needs among the following options:
+- **Full Smartling SDK** - The full Smartling SDK features the in-app review, context capture and over-the-air serving modes, and is the most convenient solution for all your localization needs. It is available as a **static library** (suitable for Objective-C apps that target iOS < 8.0) or as a **dynamic framework** (suitable for Swift apps or for Objective-C apps that only target iOS > 8.0). It will typically add about 200Kb to your app on the end user's device.
+- **MDN-only static library** - A lighter version of the Smartling SDK that includes only the over-the-air serving mode. This option is recommended for your release builds if you have tight app size requirements. It will typically add about 65Kb to the app on the user's device. It is only available as a static library.
 
-In your project's `podfile`, add the Smartling pod as shown below. 
+_(App size measurements were made on the iPhone 7 version of a release build of a sample app with bitcode enabled. Results may vary.)_
+
+## Full Smartling SDK
+
+### 1. Install the Smartling pod
+
+#### Static library
+
+Choose our static library if your app is in Objective-C and targets iOS < 8.0. In your project's `podfile`, add the Smartling pod as shown below. 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -46,7 +56,28 @@ target 'MyApp' do
 end
 
 ``` 
-**Note: Use `Smartling-framework` if you're using CocoaPods' `use_frameworks!` option.**
+
+#### Dynamic framework
+
+Choose our dynamic framework if one of the following conditions applies to your app:
+- The `use_frameworks!` option is already present and uncommented in your podfile.
+- Your app contains Swift code.
+- Your app doesn't target iOS < 8.0.
+
+In your project's `podfile`, add the Smartling-framework pod as shown below.
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'MyApp' do
+    use_frameworks!
+    pod 'Smartling-framework'
+end
+
+``` 
+
+### 2. Initialize the library
+
+#### Objective-C
 
 In your app's main.m, import the library and call the start method as shown below:
 ```objc
@@ -62,18 +93,7 @@ int main(int argc, char * argv[]) {
 }
 ```
 
-## Swift
-
-In your project's `podfile`, add the Smartling pod as shown below.
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-
-target 'MyApp' do
-    use_frameworks!
-    pod 'Smartling-framework'
-end
-
-``` 
+#### Swift
 
 In your app's AppDelegate.swift, import the library and call the start method as shown below:
 ```swift
@@ -92,7 +112,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ```
 
-# Modes
+### 3. Check your build settings
+
+Go to your project's build settings and look for `Other linker flags`. Make sure the `-ObjC` flag is present or add it.
+
+## MDN-only library
+
+In your project's `podfile`, add the Smartling pod as shown below. 
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'MyApp' do
+	pod 'Smartling-MDN'
+end
+
+``` 
+
+In your app's main.m, import the library and call the start method as shown below:
+```objc
+#import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import <Smartling-MDN/SmartlingMDN.h>
+
+int main(int argc, char * argv[]) {
+    @autoreleasepool {
+        [SmartlingMDN startWithProjectId:@"<Project ID>" OTAKey:@"<OTA key>" andOptions:@{SLLogging: SLLoggingInfo}];
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
+}
+```
+
+**The OTA key is your project's AES key for OTA updates, it was sent to you by your Smartling contact when enabling mobile in your Smartling account. You will not find this key in your Smartling dashboard.**
+
+Finally, go to your project's build settings and look for `Other linker flags`. Make sure the `-ObjC` flag is present or add it.
+
+# Modes (full Smartling SDK only)
 
 ## OTA serving
 
@@ -101,7 +155,7 @@ In OTA serving mode, published strings are served to end users in their language
 
 To build the app in OTA serving mode:
 * Use `SLMode: SLOTAServing`
-* Add the `SLOTAKey` option, with your project's AES key for OTA updates.
+* Add the `SLOTAKey` option, with your project's AES key for OTA updates. **The OTA key was sent to you by your Smartling contact when enabling mobile in your Smartling account. You will not find this key in your Smartling dashboard.**
 
 ## In App Review
 
@@ -154,7 +208,7 @@ Defines the level of logging the SDK outputs to the console.
 * SLLoggingDebug
 
 
-# Locale change at runtime
+# Locale change at runtime (full Smartling SDK only)
 
 In OTA serving mode, if you want your users to be able to change their locale from within the app, Smartling helps you achieve this goal very easily.
 
