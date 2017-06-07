@@ -6,7 +6,7 @@
 //  Copyright © 2016 Smartling. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * Smartling startup option keys
@@ -80,5 +80,11 @@
  * Returns a dictionary of all of the app's localized strings in the current locale.
  */
 + (NSDictionary *)localizedStrings;
+
+/**
+ * Manually trigger a screenshot in Context Capture mode.
+ */
++ (void)captureWindow:(UIWindow *)window withCompletion:(void (^)(NSError *error))completion;
+
 
 @end

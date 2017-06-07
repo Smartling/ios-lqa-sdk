@@ -193,6 +193,16 @@ Your app will need to be launched in context capture mode. Add the following met
 }
 ```
 
+
+You can also trigger screenshots directly from your app's code by calling the following method:
+```objc
+[Smartling captureWindow:<UIWindow> withCompletion:^(NSError *error) {
+    // Error handling
+}];
+```
+
+You may obtain your app's main window by calling `[[UIApplication sharedApplication] keyWindow]`, or from a View Controller with `self.view.window`.
+
 ## In App Review and Context Capture
 
 This mode is identical to the in-app review mode, but an additional option in the actions menu is added to let the users switch to context capture mode from within the app. That way, they can access both modes with one single build of your app.
