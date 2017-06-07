@@ -1,3 +1,7 @@
+* [How to use](https://help.smartling.com/docs/mobile-apps)
+* [FAQ](https://github.com/Smartling/ios-lqa-sdk/wiki/FAQ)
+* [Release Notes](https://github.com/Smartling/ios-lqa-sdk/wiki/Release-Notes)
+
 # Prerequisites
 
 Make sure your Xcode project is setup to use Base Internationalization. 
@@ -150,7 +154,7 @@ Finally, go to your project's build settings and look for `Other linker flags`. 
 
 ## OTA serving
 
-In OTA serving mode, published strings are served to end users in their language and displayed in the app. 
+In OTA serving mode, published strings are served to end users in their language and displayed in the app. [How to use OTA serving](https://help.smartling.com/docs/mobile-delivery-network).
 
 
 To build the app in OTA serving mode:
@@ -159,14 +163,14 @@ To build the app in OTA serving mode:
 
 ## In App Review
 
-The in-app review mode lets members of your team log in to edit strings and review them in context inside the app. 
+The in-app review mode lets members of your team log in to edit strings and review them in context inside the app. [How to use in-app review](https://help.smartling.com/docs/in-app-review-of-your-ios-app).
 
 
 To build the app in in-app review mode, use `SLMode: SLInAppReview` in the Smartling start method.
 
 ## Context Capture
 
-With the context capture mode, the user can create screenshots interactively when running the app 
+With the context capture mode, the user can create screenshots interactively when running the app. [How to use context capture](https://help.smartling.com/docs/mobile-context).
 
 
 To build the app in context capture mode:
@@ -188,6 +192,16 @@ Your app will need to be launched in context capture mode. Add the following met
     [triggerCoord pressForDuration:5.0];
 }
 ```
+
+
+You can also trigger screenshots directly from your app's code by calling the following method:
+```objc
+[Smartling captureWindow:<UIWindow> withCompletion:^(NSError *error) {
+    // Error handling
+}];
+```
+
+You may obtain your app's main window by calling `[[UIApplication sharedApplication] keyWindow]`, or from a View Controller with `self.view.window`.
 
 ## In App Review and Context Capture
 
