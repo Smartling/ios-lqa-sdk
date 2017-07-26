@@ -1,3 +1,8 @@
+![Bitrise](https://www.bitrise.io/app/b7bd639ab67aa73b.svg?token=GQ4cumwRzJP71qY-MO0OXQ)
+[![CocoaPods](https://img.shields.io/cocoapods/v/Smartling.svg)](https://github.com/Smartling/ios-lqa-sdk) 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+
 * [How to use](https://help.smartling.com/docs/mobile-apps)
 * [FAQ](https://github.com/Smartling/ios-lqa-sdk/wiki/FAQ)
 * [Release Notes](https://github.com/Smartling/ios-lqa-sdk/wiki/Release-Notes)
@@ -47,7 +52,7 @@ _(App size measurements were made on the iPhone 7 version of a release build of 
 
 ## Full Smartling SDK
 
-### 1. Install the Smartling pod
+### 1. Install the Smartling package
 
 #### Static library
 
@@ -78,6 +83,11 @@ target 'MyApp' do
 end
 
 ``` 
+
+If you use Carthage, add the Smartling-framework repository to your `cartfile` as shown below.
+```
+github "Smartling/ios-lqa-framework"
+```
 
 ### 2. Initialize the library
 
