@@ -164,7 +164,7 @@ Finally, go to your project's build settings and look for `Other linker flags`. 
 
 ## OTA serving
 
-In OTA serving mode, published strings are served to end users in their language and displayed in the app. [How to use OTA serving](https://developer.smartling.com/docs/mobile-delivery-network).
+In OTA serving mode, published strings are served to end users in their language and displayed in the app. [How to use OTA serving](https://help.smartling.com/docs/mobile-delivery-network).
 
 
 To build the app in OTA serving mode:
@@ -173,14 +173,14 @@ To build the app in OTA serving mode:
 
 ## In App Review
 
-The in-app review mode lets members of your team log in to edit strings and review them in context inside the app. [How to use in-app review](https://developer.smartling.com/docs/in-app-review-of-your-ios-app).
+The in-app review mode lets members of your team log in to edit strings and review them in context inside the app. [How to use in-app review](https://help.smartling.com/docs/in-app-review-of-your-ios-app).
 
 
 To build the app in in-app review mode, use `SLMode: SLInAppReview` in the Smartling start method.
 
 ## Context Capture
 
-With the context capture mode, the user can create screenshots interactively when running the app. [How to use context capture](https://developer.smartling.com/docs/mobile-context).
+With the context capture mode, the user can create screenshots interactively when running the app. [How to use context capture](https://help.smartling.com/docs/mobile-context).
 
 
 To build the app in context capture mode:
