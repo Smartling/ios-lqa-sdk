@@ -1,5 +1,5 @@
-![Bitrise](https://www.bitrise.io/app/b7bd639ab67aa73b.svg?token=GQ4cumwRzJP71qY-MO0OXQ)
-[![CocoaPods](https://img.shields.io/cocoapods/v/Smartling.svg)](https://github.com/Smartling/ios-lqa-sdk) 
+![Bitrise](https://app.bitrise.io/app/b7bd639ab67aa73b/status.svg?token=GQ4cumwRzJP71qY-MO0OXQ&branch=master)
+[![CocoaPods](https://img.shields.io/cocoapods/v/SmartlingFramework.svg)](https://github.com/Smartling/ios-lqa-sdk) 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 
@@ -61,7 +61,7 @@ Choose our static library if your app is in Objective-C and targets iOS < 8.0. I
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'MyApp' do
-	pod 'Smartling'
+	pod 'SmartlingSDK'
 end
 
 ``` 
@@ -79,12 +79,12 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'MyApp' do
     use_frameworks!
-    pod 'Smartling-framework'
+    pod 'SmartlingFramework'
 end
 
 ``` 
 
-If you use Carthage, add the Smartling-framework repository to your `cartfile` as shown below.
+If you use Carthage, add the SmartlingFramework repository to your `cartfile` as shown below.
 ```
 github "Smartling/ios-lqa-framework"
 ```
