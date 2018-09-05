@@ -97,7 +97,7 @@ In your app's main.m, import the library and call the start method as shown belo
 ```objc
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import <Smartling/Smartling.h>
+#import <SmartlingSDK/Smartling.h>
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
@@ -112,7 +112,7 @@ int main(int argc, char * argv[]) {
 In your app's AppDelegate.swift, import the library and call the start method as shown below:
 ```swift
 import UIKit
-import Smartling
+import SmartlingSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -120,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ...
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Smartling.start(withProjectId: "<Project ID>", andOptions: [SLLogging: SLLoggingInfo, SLMode: <Mode>])
+        SmartlingSDK.start(withProjectId: "<Project ID>", andOptions: [SLLogging: SLLoggingInfo, SLMode: <Mode>])
         return true
     }
 
@@ -146,7 +146,7 @@ In your app's main.m, import the library and call the start method as shown belo
 ```objc
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import <Smartling-MDN/SmartlingMDN.h>
+#import <SmartlingMDN/SmartlingMDN.h>
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
