@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name              = "SmartlingMDN"
-  s.version           = "1.4.8"
+  s.version           = "1.4.9.RC1"
   s.summary           = "Smartling Mobile Delivery Network SDK"
   s.description       = <<-DESC
                         Smartling MDN serves your Smartling translations to your end users over the air.
