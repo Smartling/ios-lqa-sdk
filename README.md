@@ -99,11 +99,11 @@ In your app's main.m, import the library and call the start method as shown belo
 #import "AppDelegate.h"
 #import <SmartlingSDK/Smartling.h>
 
-int main(int argc, char * argv[]) {
-    @autoreleasepool {
-        [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : SLLoggingInfo, SLMode: <Mode>}];
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : SLLoggingInfo, SLMode: <Mode>}];
+    return YES;
 }
 ```
 
