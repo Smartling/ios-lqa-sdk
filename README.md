@@ -105,6 +105,8 @@ In your app's main.m, import the library and call the start method as shown belo
     [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : SLLoggingInfo, SLMode: <Mode>}];
     return YES;
 }
+
+@end
 ```
 
 #### Swift
