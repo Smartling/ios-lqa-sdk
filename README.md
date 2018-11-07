@@ -114,7 +114,7 @@ In your app's main.m, import the library and call the start method as shown belo
 In your app's AppDelegate.swift, import the library and call the start method as shown below:
 ```swift
 import UIKit
-import SmartlingSDK
+import Smartling
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -122,7 +122,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ...
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        SmartlingSDK.start(withProjectId: "<Project ID>", andOptions: [SLLogging: SLLoggingInfo, SLMode: <Mode>])
+        Smartling.start(withProjectId: "<Project ID>", 
+			andOptions: [SLLogging: SLLoggingInfo, SLMode: <Mode>])
         return true
     }
 
