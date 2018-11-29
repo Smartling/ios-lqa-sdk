@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name              = "SmartlingSDK"
-  s.version           = "1.5.0"
+  s.version           = "1.5.1"
   s.summary           = "Smartling in-context translation editor "
   s.description       = <<-DESC
                         Smartling offers an advanced interface for translating and performing QA on a mobile app, in-context, directly within the app and on the actual device.
