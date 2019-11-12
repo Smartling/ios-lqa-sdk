@@ -93,17 +93,15 @@ github "Smartling/ios-lqa-framework"
 
 #### Objective-C
 
-In your app's main.m, import the library and call the start method as shown below:
+In your app's delegate, import the library and call the start method as shown below:
 ```objc
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import <SmartlingSDK/Smartling.h>
 
-int main(int argc, char * argv[]) {
-    @autoreleasepool {
-        [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : SLLoggingInfo, SLMode: <Mode>}];
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
+- (BOOL)application:(UIApplication *)application 
+didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions {
+       [Smartling startWithProjectId:@"<Project ID>" andOptions:@{SLLogging : SLLoggingInfo, SLMode: <Mode>}];
 }
 ```
 
