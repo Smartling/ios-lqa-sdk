@@ -7,6 +7,10 @@
 * [FAQ](https://github.com/Smartling/ios-lqa-sdk/wiki/FAQ)
 * [Release Notes](https://github.com/Smartling/ios-lqa-sdk/wiki/Release-Notes)
 
+# Deprecated
+
+Smartling no longer supports this SDK.  It is left available for use as-is for Smartling customers who are interested in developing their own custom solutions.
+
 # Prerequisites
 
 Make sure your Xcode project is setup to use Base Internationalization. 
